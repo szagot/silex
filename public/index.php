@@ -6,6 +6,16 @@ use App\Service\ClienteService;
 
 require_once __DIR__ . '/../bootstrap.php';
 
+// Service Manager: Cliente
+$app[ 'clienteService' ] = function () {
+    $cliente = new Cliente();
+    $clienteMapper = new ClienteMapper();
+
+    $clienteService = new ClienteService($cliente, $clienteMapper);
+
+    return $clienteService;
+};
+
 //  Definindo Rota do tipo GET
 $app->get('/', function () {
 
@@ -26,11 +36,7 @@ $app->get('/cliente', function () use ($app) {
     $dados[ 'nome' ] = 'Daniel Bispo';
     $dados[ 'email' ] = 'szagot@gmail.com';
 
-    $cliente = new Cliente();
-    $clienteMapper = new ClienteMapper();
-
-    $clienteService = new ClienteService($cliente, $clienteMapper);
-    $result = $clienteService->insert($dados);
+    $result = $app[ 'clienteService' ]->insert($dados);
 
     return $app->json($result);
 });
