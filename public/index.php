@@ -29,7 +29,13 @@ $app->get('/ola/{nome}', function ($nome) {
 
     return 'Olá ' . $nome;
 
-});
+})
+    // Valor padrão pra nome
+    ->value('nome', 'ser inonimado')
+    // Garante que o nome será uma string
+    ->convert('nome', function ($nome) {
+        return ucwords(strtolower((string)$nome));
+    });
 
 // Preparando o ambiente para recepção de clientes
 $app->get('/cliente', function () use ($app) {
