@@ -11,14 +11,30 @@ use App\Mapper\ClienteMapper;
 
 class ClienteService
 {
+    /**
+     * @var Cliente
+     */
+    private $cliente;
+    /**
+     * @var ClienteMapper
+     */
+    private $clienteMapper;
+
+    /**
+     * ClienteService constructor.
+     */
+    public function __construct(Cliente $cliente, ClienteMapper $clienteMapper)
+    {
+
+        $this->cliente = $cliente;
+        $this->clienteMapper = $clienteMapper;
+    }
+
     public function insert(array $data)
     {
-        $cliente = new Cliente();
-        $cliente->setNome($data[ 'nome' ]);
-        $cliente->setEmail($data[ 'email' ]);
+        $this->cliente->setNome($data[ 'nome' ]);
+        $this->cliente->setEmail($data[ 'email' ]);
 
-        $mapper = new ClienteMapper();
-
-        return $mapper->insert($cliente);
+        return $this->clienteMapper->insert($this->cliente);
     }
 }
