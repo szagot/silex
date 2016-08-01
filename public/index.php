@@ -1,6 +1,6 @@
 <?php
-use App\Entity\Cliente;
-use App\Mapper\ClienteMapper;
+
+use App\Service\ClienteService;
 
 require_once __DIR__ . '/../bootstrap.php';
 
@@ -21,12 +21,11 @@ $app->get('/ola/{nome}', function ($nome) {
 
 // Preparando o ambiente para recepção de clientes
 $app->get('/cliente', function () use ($app) {
-    $cliente = new Cliente();
-    $cliente->setNome('Daniel Bispo');
-    $cliente->setEmail('daniel@tmw.com.br');
+    $dados[ 'nome' ] = 'Daniel Bispo';
+    $dados[ 'email' ] = 'szagot@gmail.com';
 
-    $mapper = new ClienteMapper();
-    $result = $mapper->insert($cliente);
+    $cliente = new ClienteService();
+    $result = $cliente->insert($dados);
 
     return $app->json($result);
 });

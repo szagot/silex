@@ -1,4 +1,7 @@
 <?php
+/**
+ * Entidade Cliente (Tabela no BD)
+ */
 
 namespace App\Entity;
 
