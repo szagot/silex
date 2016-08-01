@@ -1,16 +1,11 @@
 <?php
 require_once __DIR__ . '/../bootstrap.php';
 
-use Symfony\Component\HttpFoundation\Response;
-
-$response = new Response();
-
 //  Definindo Rota do tipo GET
-$app->get('/', function () use ($response) {
+$app->get('/', function () {
 
-    // Trabalhando com Response
-    $response->setContent('Olá Mundo');
-    return $response;
+    // Trabalhando de maneira direta
+    return 'Olá Mundo';
 
 });
 
