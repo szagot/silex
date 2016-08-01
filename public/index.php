@@ -1,4 +1,7 @@
 <?php
+use App\Entity\Cliente;
+use App\Mapper\ClienteMapper;
+
 require_once __DIR__ . '/../bootstrap.php';
 
 //  Definindo Rota do tipo GET
@@ -17,22 +20,15 @@ $app->get('/ola/{nome}', function ($nome) {
 });
 
 // Preparando o ambiente para recepção de clientes
-$app->get('/clientes', function () {
+$app->get('/cliente', function () use ($app) {
+    $cliente = new Cliente();
+    $cliente->setNome('Daniel Bispo');
+    $cliente->setEmail('daniel@tmw.com.br');
 
-    $response = new \Symfony\Component\HttpFoundation\JsonResponse();
+    $mapper = new ClienteMapper();
+    $result = $mapper->insert($cliente);
 
-    $response->setData([
-        'name'     => 'Daniel Bispo',
-        'email'    => 'szagot@gmail.com',
-        'document' => [
-            'type'   => 'CPF',
-            'number' => '304.714.108-88'
-        ]
-    ]);
-
-    // Simulando exibção em JSon
-    return $response;
-
+    return $app->json($result);
 });
 
 $app->run();
