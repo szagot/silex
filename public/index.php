@@ -9,4 +9,11 @@ $app->get('/', function () {
 
 });
 
+// Definindo Rota com parametros
+$app->get('/ola/{nome}', function ($nome) {
+
+    return 'Olá ' . $nome;
+
+});
+
 $app->run();
