@@ -4,4 +4,9 @@ require_once 'vendor/autoload.php';
 $app = new \Silex\Application();
 
 // Modo de Debug ativo
-$app['debug'] = true;
+$app[ 'debug' ] = true;
+
+// Registrando Twig
+$app->register(new \Silex\Provider\TwigServiceProvider(), [
+    'twig.path' => __DIR__ . '/template'
+]);
