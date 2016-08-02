@@ -22,7 +22,7 @@ $app->get('/', function () use ($app) {
     // Trabalhando com twig
     return $app[ 'twig' ]->render('home.html.twig', []);
 
-});
+})->bind('index');
 
 // Definindo Rota com parametros
 $app->get('/ola/{nome}', function ($nome) use ($app) {
@@ -36,7 +36,9 @@ $app->get('/ola/{nome}', function ($nome) use ($app) {
     // Garante que o nome será uma string
     ->convert('nome', function ($nome) {
         return ucwords(strtolower((string)$nome));
-    });
+    })
+    // Nomeando rota
+    ->bind('ola');
 
 ## FIM EXEMPLOS ##
 
@@ -48,16 +50,18 @@ $app->get('/clientes', function () use ($app) {
     // Mostrando com HTML
     return $app[ 'twig' ]->render('clientes.html.twig', ['clientes' => $dados]);
 
-});
+})->bind('clientes');
 
 // Preparando o ambiente para recepção de clientes
 $app->get('/cliente', function () use ($app) {
+
     $dados[ 'nome' ] = 'Daniel Bispo';
     $dados[ 'email' ] = 'szagot@gmail.com';
 
     $result = $app[ 'clienteService' ]->insert($dados);
 
     return $app->json($result);
-});
+
+})->bind('cliente');
 
 $app->run();

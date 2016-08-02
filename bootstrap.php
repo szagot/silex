@@ -10,3 +10,6 @@ $app[ 'debug' ] = true;
 $app->register(new \Silex\Provider\TwigServiceProvider(), [
     'twig.path' => __DIR__ . '/template'
 ]);
+
+// Registrando URL Generator Provider
+$app->register(new \Silex\Provider\UrlGeneratorServiceProvider());
