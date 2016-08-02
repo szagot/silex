@@ -37,4 +37,9 @@ class ClienteService
 
         return $this->clienteMapper->insert($this->cliente);
     }
+
+    public function fetchAll()
+    {
+        return $this->clienteMapper->fectAll();
+    }
 }

@@ -38,6 +38,18 @@ $app->get('/ola/{nome}', function ($nome) use ($app) {
         return ucwords(strtolower((string)$nome));
     });
 
+## FIM EXEMPLOS ##
+
+$app->get('/clientes', function () use ($app) {
+
+    // Pegando dados do Cliente
+    $dados = $app[ 'clienteService' ]->fetchAll();
+
+    // Mostrando com HTML
+    return $app[ 'twig' ]->render('clientes.html.twig', ['clientes' => $dados]);
+
+});
+
 // Preparando o ambiente para recepção de clientes
 $app->get('/cliente', function () use ($app) {
     $dados[ 'nome' ] = 'Daniel Bispo';

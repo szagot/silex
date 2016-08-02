@@ -17,4 +17,16 @@ class ClienteMapper
             'email' => $cliente->getEmail()
         ];
     }
+
+    public function fectAll()
+    {
+        ## Simula pegar dados do BD ##
+        $dados[0]['nome'] = 'Cliente XPTO';
+        $dados[0]['email'] = 'clientexpto@gmail.com';
+
+        $dados[1]['nome'] = 'Cliente Y';
+        $dados[1]['email'] = 'clientey@gmail.com';
+
+        return $dados;
+    }
 }
