@@ -1,0 +1,16 @@
+{% extends 'layouts/default.html.twig' %}
+
+{% block title %}Lista de Produtos | {{ parent() }}{% endblock %}
+
+{% block content %}
+    {% for produto in produtos %}
+        <ul>
+            <li><b>SKU:</b> {{ produto.id }}</li>
+            <ul>
+                <li><b>Nome:</b> {{ produto.nome }}</li>
+                <li><b>Descrição:</b> {{ produto.descricao }}</li>
+                <li><b>Valor:</b> {{ produto.valor | number_format(2, ',', '.') }}</li>
+            </ul>
+        </ul>
+    {% endfor %}
+{% endblock %}
