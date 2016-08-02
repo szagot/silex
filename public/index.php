@@ -64,4 +64,5 @@ $app->get('/cliente', function () use ($app) {
 
 })->bind('cliente');
 
+// Rodando Aplicação
 $app->run();

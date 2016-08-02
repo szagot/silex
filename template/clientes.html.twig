@@ -1,7 +1,11 @@
-<h1>Lista de Clientes</h1>
+{% extends 'layouts/default.html.twig' %}
 
-<ul>
-{% for cliente in clientes %}
-    <li>{{ cliente.nome }} ({{ cliente.email }})</li>
-{% endfor %}
-</ul>
+{% block title %}Lista de Clientes | {{ parent() }}{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for cliente in clientes %}
+            <li>{{ cliente.nome }} ({{ cliente.email }})</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
