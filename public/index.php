@@ -17,17 +17,18 @@ $app[ 'clienteService' ] = function () {
 };
 
 //  Definindo Rota do tipo GET
-$app->get('/', function () {
+$app->get('/', function () use ($app) {
 
-    // Trabalhando de maneira direta
-    return 'Olá Mundo';
+    // Trabalhando com twig
+    return $app[ 'twig' ]->render('home.html.twig', []);
 
 });
 
 // Definindo Rota com parametros
-$app->get('/ola/{nome}', function ($nome) {
+$app->get('/ola/{nome}', function ($nome) use ($app) {
 
-    return 'Olá ' . $nome;
+    // Trabalhando com twig passando parametros
+    return $app[ 'twig' ]->render('ola.html.twig', ['nome' => $nome]);
 
 })
     // Valor padrão pra nome
